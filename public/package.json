@@ -1,0 +1,21 @@
+{
+  "name": "flappyBird",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "devDependencies": {
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-preset-es2015": "*",
+    "clean-webpack-plugin": "*",
+    "lite-server": "^2.3.0",
+    "uglify-js-plugin": "*",
+    "webpack": "*"
+  },
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack --progress --watch"
+  },
+  "author": "HEJU",
+  "license": "ISC"
+}

@@ -9,7 +9,7 @@ class Main {
         mainBox.style.width = window.innerWidth + "px";
         mainBox.style.height = window.innerHeight + "px";
 
-        var monk = new window.Monk.Main("mainBox");
+        var monk = new window.monk.Main("mainBox");
 
         monk.run(route);
     }
