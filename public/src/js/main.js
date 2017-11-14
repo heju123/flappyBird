@@ -6,8 +6,8 @@ import route from "./view/route.js";
 class Main {
     constructor(){
         let mainBox = document.getElementById("mainBox");
-        mainBox.style.width = window.innerWidth + "px";
-        mainBox.style.height = window.innerHeight + "px";
+        mainBox.style.width = "864px";
+        mainBox.style.height = "512px";
 
         var monk = new window.monk.Main("mainBox");
 
