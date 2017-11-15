@@ -150,7 +150,11 @@ exports.default = {
         y: 0,
         width: "100%",
         height: "100%",
-        backgroundColor: "#ffffff"
+        backgroundColor: "#ffffff",
+        layout: {
+            type: "linearLayout",
+            orientation: "horizontal"
+        }
     },
     children: []
 };
@@ -166,28 +170,68 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _bgView = __webpack_require__(4);
+
+var _bgView2 = _interopRequireDefault(_bgView);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by heju on 2017/7/14.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
-/**
- * Created by heju on 2017/7/14.
- */
+
 var MainController = function (_window$monk$Controll) {
     _inherits(MainController, _window$monk$Controll);
 
     function MainController(component) {
         _classCallCheck(this, MainController);
 
-        return _possibleConstructorReturn(this, (MainController.__proto__ || Object.getPrototypeOf(MainController)).call(this, component));
+        var _this = _possibleConstructorReturn(this, (MainController.__proto__ || Object.getPrototypeOf(MainController)).call(this, component));
+
+        _this.registerEvent("$onViewLoaded", function () {
+            //生成背景图片
+            var bgCom = void 0;
+            for (var i = 0; i < 3; i++) {
+                bgCom = new window.monk.components.Rect(_this.component);
+                bgCom.initCfg(_bgView2.default).then(function (bgCom) {
+                    return function () {
+                        _this.component.appendChildren(bgCom);
+                    };
+                }(bgCom));
+            }
+        });
+        return _this;
     }
 
     return MainController;
 }(window.monk.Controller);
 
 exports.default = MainController;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    type: "rect",
+    style: {
+        autoWidth: true,
+        autoHeight: true,
+        backgroundImage: "/build/images/background.png",
+        zIndex: -1
+    }
+};
 
 /***/ })
 /******/ ]);

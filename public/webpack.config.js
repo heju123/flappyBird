@@ -5,7 +5,7 @@ var uglifyJsPlugin = require('uglify-js-plugin');
 
 var devtool = "source-map";
 var plugins = [];
-plugins.push(new cleanWebpackPlugin(['build/*.{js,map}', 'build/images/*.{png,jpg,jpeg,gif}'],
+plugins.push(new cleanWebpackPlugin(['build/*.{js,map}'],
   {
     root: '',
     verbose: true,
