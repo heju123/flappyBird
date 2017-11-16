@@ -181,11 +181,12 @@ var MainController = function (_window$monk$Controll) {
         _this.registerEvent("$onViewLoaded", function () {
             //生成背景图片
             var bgCom = void 0;
+            var bg = _this.component.getComponentByName("bg");
             for (var i = 0; i < 3; i++) {
-                bgCom = new window.monk.components.Rect(_this.component);
+                bgCom = new window.monk.components.Rect(bg);
                 bgCom.initCfg(_bgView2.default).then(function (bgCom) {
                     return function () {
-                        _this.component.getComponentByName("bg").appendChildren(bgCom);
+                        bg.appendChildren(bgCom);
                     };
                 }(bgCom));
             }

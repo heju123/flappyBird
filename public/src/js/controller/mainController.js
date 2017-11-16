@@ -10,12 +10,13 @@ export default class MainController extends window.monk.Controller{
         this.registerEvent("$onViewLoaded", ()=>{
             //生成背景图片
             let bgCom;
+            let bg = this.component.getComponentByName("bg");
             for (let i = 0; i < 3; i++)
             {
-                bgCom = new window.monk.components.Rect(this.component);
+                bgCom = new window.monk.components.Rect(bg);
                 bgCom.initCfg(bgView).then(((bgCom)=>{
                     return ()=>{
-                        this.component.getComponentByName("bg").appendChildren(bgCom);
+                        bg.appendChildren(bgCom);
                     };
                 })(bgCom));
             }
