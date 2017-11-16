@@ -1,7 +1,7 @@
 /**
  * Created by heju on 2017/7/19.
  */
-import route from "./view/route.js";
+import mainView from "./view/mainView.js";
 
 class Main {
     constructor(){
@@ -11,7 +11,7 @@ class Main {
 
         var monk = new window.monk.Main("mainBox");
 
-        monk.run(route);
+        monk.run(mainView);
     }
 }
 

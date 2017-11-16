@@ -70,9 +70,9 @@
 "use strict";
 
 
-var _route = __webpack_require__(1);
+var _mainView = __webpack_require__(1);
 
-var _route2 = _interopRequireDefault(_route);
+var _mainView2 = _interopRequireDefault(_mainView);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -90,7 +90,7 @@ var Main = function Main() {
 
     var monk = new window.monk.Main("mainBox");
 
-    monk.run(_route2.default);
+    monk.run(_mainView2.default);
 };
 
 var main = new Main();
@@ -106,24 +106,41 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _mainView = __webpack_require__(2);
+var _mainController = __webpack_require__(2);
 
-var _mainView2 = _interopRequireDefault(_mainView);
+var _mainController2 = _interopRequireDefault(_mainController);
+
+var _route = __webpack_require__(4);
+
+var _route2 = _interopRequireDefault(_route);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    id: "mainRoute",
-    type: "route",
-    routes: {
-        "main": {
-            view: _mainView2.default,
-            default: true
+    controller: _mainController2.default,
+    type: "rect",
+    style: {
+        x: 0,
+        y: 0,
+        width: "100%",
+        height: "100%"
+    },
+    children: [{
+        name: "bg",
+        type: "rect",
+        style: {
+            x: 0,
+            y: 0,
+            width: "100%",
+            height: "100%",
+            layout: {
+                type: "linearLayout",
+                orientation: "horizontal"
+            },
+            zIndex: -1
         }
-    }
-}; /**
-    * Created by heju on 2017/7/27.
-    */
+    }, _route2.default]
+};
 
 /***/ }),
 /* 2 */
@@ -136,41 +153,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _mainController = __webpack_require__(3);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _mainController2 = _interopRequireDefault(_mainController);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    controller: _mainController2.default,
-    type: "rect",
-    style: {
-        x: 0,
-        y: 0,
-        width: "100%",
-        height: "100%",
-        backgroundColor: "#ffffff",
-        layout: {
-            type: "linearLayout",
-            orientation: "horizontal"
-        }
-    },
-    children: []
-};
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _bgView = __webpack_require__(4);
+var _bgView = __webpack_require__(3);
 
 var _bgView2 = _interopRequireDefault(_bgView);
 
@@ -200,7 +185,7 @@ var MainController = function (_window$monk$Controll) {
                 bgCom = new window.monk.components.Rect(_this.component);
                 bgCom.initCfg(_bgView2.default).then(function (bgCom) {
                     return function () {
-                        _this.component.appendChildren(bgCom);
+                        _this.component.getComponentByName("bg").appendChildren(bgCom);
                     };
                 }(bgCom));
             }
@@ -208,13 +193,21 @@ var MainController = function (_window$monk$Controll) {
         return _this;
     }
 
+    _createClass(MainController, [{
+        key: "goStartGame",
+        value: function goStartGame() {
+            var mainRoute = this.viewState.getComponentById("mainRoute");
+            mainRoute.changeRoute("game");
+        }
+    }]);
+
     return MainController;
 }(window.monk.Controller);
 
 exports.default = MainController;
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -232,6 +225,212 @@ exports.default = {
         zIndex: -1
     }
 };
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _startView = __webpack_require__(5);
+
+var _startView2 = _interopRequireDefault(_startView);
+
+var _gameView = __webpack_require__(7);
+
+var _gameView2 = _interopRequireDefault(_gameView);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Created by heju on 2017/7/27.
+ */
+exports.default = {
+    id: "mainRoute",
+    type: "route",
+    routes: {
+        "start": {
+            view: _startView2.default,
+            default: true
+        },
+        "game": {
+            view: _gameView2.default
+        }
+    }
+};
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _startController = __webpack_require__(6);
+
+var _startController2 = _interopRequireDefault(_startController);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    controller: _startController2.default,
+    type: "rect",
+    style: {
+        x: 0,
+        y: 0,
+        width: "100%",
+        height: "100%"
+    },
+    children: [{
+        name: "titleImage",
+        type: "rect",
+        style: {
+            x: function x() {
+                return this.parent.getWidth() / 2 - this.getWidth() / 2;
+            },
+            y: "30%",
+            autoWidth: true,
+            autoHeight: true,
+            backgroundImage: "/build/images/title.png"
+        }
+    }, {
+        name: "btnStart",
+        type: "rect",
+        style: {
+            x: function x() {
+                return this.parent.getWidth() / 2 - this.getWidth() / 2;
+            },
+            y: function y() {
+                return this.parent.getHeight() / 2 - this.getHeight() / 2;
+            },
+            autoWidth: true,
+            autoHeight: true,
+            backgroundImage: "/build/images/startButton.png",
+            hover: {
+                alpha: 0.8
+            }
+        },
+        events: {
+            "click": "goStartGame"
+        }
+    }]
+};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Created by heju on 2017/7/14.
+ */
+var StartController = function (_window$monk$Controll) {
+    _inherits(StartController, _window$monk$Controll);
+
+    function StartController(component) {
+        _classCallCheck(this, StartController);
+
+        return _possibleConstructorReturn(this, (StartController.__proto__ || Object.getPrototypeOf(StartController)).call(this, component));
+    }
+
+    _createClass(StartController, [{
+        key: "goStartGame",
+        value: function goStartGame() {
+            var mainRoute = this.viewState.getComponentById("mainRoute");
+            mainRoute.changeRoute("game");
+        }
+    }]);
+
+    return StartController;
+}(window.monk.Controller);
+
+exports.default = StartController;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _gameController = __webpack_require__(8);
+
+var _gameController2 = _interopRequireDefault(_gameController);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    controller: _gameController2.default,
+    type: "rect",
+    style: {
+        x: 0,
+        y: 0,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#ffffff"
+    }
+};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Created by heju on 2017/7/14.
+ */
+var GameController = function (_window$monk$Controll) {
+    _inherits(GameController, _window$monk$Controll);
+
+    function GameController(component) {
+        _classCallCheck(this, GameController);
+
+        return _possibleConstructorReturn(this, (GameController.__proto__ || Object.getPrototypeOf(GameController)).call(this, component));
+    }
+
+    return GameController;
+}(window.monk.Controller);
+
+exports.default = GameController;
 
 /***/ })
 /******/ ]);

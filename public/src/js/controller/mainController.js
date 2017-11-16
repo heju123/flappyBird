@@ -15,10 +15,15 @@ export default class MainController extends window.monk.Controller{
                 bgCom = new window.monk.components.Rect(this.component);
                 bgCom.initCfg(bgView).then(((bgCom)=>{
                     return ()=>{
-                        this.component.appendChildren(bgCom);
+                        this.component.getComponentByName("bg").appendChildren(bgCom);
                     };
                 })(bgCom));
             }
         });
+    }
+
+    goStartGame(){
+        let mainRoute = this.viewState.getComponentById("mainRoute");
+        mainRoute.changeRoute("game");
     }
 }
