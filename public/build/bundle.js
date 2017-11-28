@@ -394,9 +394,23 @@ exports.default = {
         x: 0,
         y: 0,
         width: "100%",
-        height: "100%",
-        backgroundColor: "#ffffff"
-    }
+        height: "100%"
+    },
+    children: [{
+        id: "mainMap",
+        type: "map",
+        style: {
+            x: 0,
+            y: 0,
+            backgroundColor: "#dbdbdb"
+        },
+        mapDataUrl: "/build/maps/flappyBird.map",
+        terrainPolicy: {
+            "block": {
+                backgroundColor: "#000000"
+            }
+        }
+    }]
 };
 
 /***/ }),
@@ -409,6 +423,8 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -425,8 +441,33 @@ var GameController = function (_window$monk$Controll) {
     function GameController(component) {
         _classCallCheck(this, GameController);
 
-        return _possibleConstructorReturn(this, (GameController.__proto__ || Object.getPrototypeOf(GameController)).call(this, component));
+        var _this = _possibleConstructorReturn(this, (GameController.__proto__ || Object.getPrototypeOf(GameController)).call(this, component));
+
+        _this.registerEvent("$onViewLoaded", function () {
+            _this.mapView = _this.component.getComponentById("mainMap");
+
+            window.monk.commonUtil.createImageDom("/build/images/tube.png").then(function (imgThis) {
+                _this.tubeImageDom = imgThis;
+            });
+        });
+        return _this;
     }
+
+    _createClass(GameController, [{
+        key: "draw",
+        value: function draw(ctx) {
+            if (!this.mapView || !this.mapView.mapData) {
+                return;
+            }
+            for (var row = 0; row < this.mapView.mapHeight; row++) {
+                for (var col = 0; col < this.mapView.mapWidth; col++) {
+                    if (this.mapView.mapData[row][col].terrain == 1) {
+                        ctx.drawImage(this.tubeImageDom, this.mapView.getRealX() + col * this.mapView.mapSize, this.mapView.getRealY() + row * this.mapView.mapSize, this.tubeImageDom.width, this.tubeImageDom.height);
+                    }
+                }
+            }
+        }
+    }]);
 
     return GameController;
 }(window.monk.Controller);
