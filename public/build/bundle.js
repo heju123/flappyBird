@@ -464,13 +464,15 @@ var GameController = function (_window$monk$Controll) {
                     if (this.mapView.mapData[row][col].terrain == 1) {
                         ctx.drawImage(this.tubeImageDom, this.mapView.getRealX() + col * this.mapView.mapSize, this.mapView.getRealY() + row * this.mapView.mapSize - this.tubeImageDom.naturalHeight + parseInt(this.mapView.mapSize, 10), this.tubeImageDom.width, this.tubeImageDom.height);
                     } else if (this.mapView.mapData[row][col].terrain == 2) {
-                        var transX = this.mapView.getRealX() + col * this.mapView.mapSize - this.tubeImageDom.naturalWidth;
-                        var transY = this.mapView.getRealY() + row * this.mapView.mapSize - this.tubeImageDom.naturalHeight;
+                        ctx.save();
+                        var transX = this.mapView.getRealX() + col * this.mapView.mapSize + this.tubeImageDom.naturalWidth / 2;
+                        var transY = this.mapView.getRealY() + row * this.mapView.mapSize + this.tubeImageDom.naturalHeight / 2;
                         ctx.translate(transX, transY);
-                        ctx.rotate(180 * Math.PI / 180);
+                        ctx.scale(1, -1);
                         ctx.translate(-transX, -transY);
 
                         ctx.drawImage(this.tubeImageDom, this.mapView.getRealX() + col * this.mapView.mapSize, this.mapView.getRealY() + row * this.mapView.mapSize, this.tubeImageDom.width, this.tubeImageDom.height);
+                        ctx.restore();
                     }
                 }
             }
