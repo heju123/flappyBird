@@ -15,8 +15,7 @@ export default {
             type: "map",
             style: {
                 x: 0,
-                y: 0,
-                backgroundColor: "#dbdbdb"
+                y: 0
             },
             mapDataUrl: "/build/maps/flappyBird.map",
             terrainPolicy: {
