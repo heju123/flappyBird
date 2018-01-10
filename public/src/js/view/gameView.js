@@ -22,7 +22,17 @@ export default {
                 "block": {
                     backgroundColor: "#000000"
                 }
-            }
+            },
+            children : [
+                {
+                    name : "bird",
+                    type : "sprite",
+                    style : {
+                        x : 160,
+                        y : 40
+                    }
+                }
+            ]
         }
     ]
 }

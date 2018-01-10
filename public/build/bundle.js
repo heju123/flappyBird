@@ -408,7 +408,15 @@ exports.default = {
             "block": {
                 backgroundColor: "#000000"
             }
-        }
+        },
+        children: [{
+            name: "bird",
+            type: "sprite",
+            style: {
+                x: 160,
+                y: 40
+            }
+        }]
     }]
 };
 
@@ -425,15 +433,21 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _birdAction = __webpack_require__(9);
+
+var _birdAction2 = _interopRequireDefault(_birdAction);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by heju on 2017/7/14.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
-/**
- * Created by heju on 2017/7/14.
- */
+
 var GameController = function (_window$monk$Controll) {
     _inherits(GameController, _window$monk$Controll);
 
@@ -442,17 +456,69 @@ var GameController = function (_window$monk$Controll) {
 
         var _this = _possibleConstructorReturn(this, (GameController.__proto__ || Object.getPrototypeOf(GameController)).call(this, component));
 
+        var SPEED = 1;
+
         _this.registerEvent("$onViewLoaded", function () {
             _this.mapView = _this.component.getComponentById("mainMap");
 
+            _this.bird = _this.component.getComponentByName("bird");
+            _this.bird.onCollision = function (data) {
+                console.log(data);
+            };
+            _this.setBirdAction(_birdAction2.default.right_normal);
+
             window.monk.commonUtil.createImageDom("/build/images/tube.png").then(function (imgThis) {
                 _this.tubeImageDom = imgThis;
+            });
+
+            _this.mapView.registerEvent("keydown", function (e) {
+                console.log(e.keyCode);
+                switch (e.keyCode) {
+                    case 87:
+                        //w
+                        _this.bird.ySpeed = -SPEED;
+                        _this.setBirdAction(_birdAction2.default.right_up);
+                        break;
+                    case 83:
+                        //s
+                        _this.bird.ySpeed = SPEED;
+                        _this.setBirdAction(_birdAction2.default.right_down);
+                        break;
+                    default:
+                        break;
+                }
+            });
+            _this.mapView.registerEvent("keyup", function (e) {
+                switch (e.keyCode) {
+                    case 87: //w
+                    case 83:
+                        //s
+                        _this.bird.ySpeed = 0;
+                        _this.setBirdAction(_birdAction2.default.right_normal);
+                        break;
+                    default:
+                        break;
+                }
             });
         });
         return _this;
     }
 
     _createClass(GameController, [{
+        key: "setBirdAction",
+        value: function setBirdAction(action) {
+            if (action) {
+                this.currentAction = action;
+            }
+
+            this.bird.setStyle({
+                "width": this.currentAction.width,
+                "height": this.currentAction.height,
+                "backgroundImages": this.currentAction.backgroundImages,
+                "backgroundImagesInterval": this.currentAction.backgroundImagesInterval
+            });
+        }
+    }, {
         key: "draw",
         value: function draw(ctx) {
             if (!this.mapView || !this.mapView.mapData || !this.tubeImageDom) {
@@ -482,6 +548,55 @@ var GameController = function (_window$monk$Controll) {
 }(window.monk.Controller);
 
 exports.default = GameController;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    right_normal: {
+        width: 34,
+        height: 34,
+        backgroundImages: [{
+            url: "/build/images/birdFlutterUpNormal.png"
+        }, {
+            url: "/build/images/birdNormal.png"
+        }, {
+            url: "/build/images/birdFlutterDownNormal.png"
+        }],
+        backgroundImagesInterval: 300
+    },
+    right_up: {
+        width: 34,
+        height: 34,
+        backgroundImages: [{
+            url: "/build/images/birdFlutterUpFly.png"
+        }, {
+            url: "/build/images/birdNormalFly.png"
+        }, {
+            url: "/build/images/birdFlutterDownFly.png"
+        }],
+        backgroundImagesInterval: 300
+    },
+    right_down: {
+        width: 34,
+        height: 34,
+        backgroundImages: [{
+            url: "/build/images/birdFlutterUpFall.png"
+        }, {
+            url: "/build/images/birdNormalFall.png"
+        }, {
+            url: "/build/images/birdFlutterDownFall.png"
+        }],
+        backgroundImagesInterval: 300
+    }
+};
 
 /***/ })
 /******/ ]);
