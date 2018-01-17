@@ -3,7 +3,7 @@ export default {
     style : {
         autoWidth : true,
         autoHeight : true,
-        backgroundImage : "/build/images/background.png",
+        backgroundImage : "/dist/images/background.png",
         zIndex : -1
     }
 };

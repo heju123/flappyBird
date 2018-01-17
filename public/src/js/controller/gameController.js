@@ -3,7 +3,7 @@
  */
 import birdAction from "../view/birdAction.js";
 
-export default class GameController extends window.monk.Controller{
+export default class GameController extends window.plutojs.Controller{
     constructor(component) {
         super(component);
 
@@ -18,11 +18,11 @@ export default class GameController extends window.monk.Controller{
             };
             this.setBirdAction(birdAction.right_normal);
 
-            window.monk.commonUtil.createImageDom("/build/images/tube.png").then((imgThis)=>{
+            window.plutojs.utils.commonUtil.createImageDom("/dist/images/tube.png").then((imgThis)=>{
                 this.tubeImageDom = imgThis;
             });
 
-            this.mapView.registerEvent("keydown", (e)=>{console.log(e.keyCode);
+            this.mapView.registerEvent("keydown", (e)=>{
                 switch (e.keyCode)
                 {
                     case 87 : //w

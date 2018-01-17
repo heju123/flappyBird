@@ -4,13 +4,13 @@ export default {
         height : 34,
         backgroundImages : [
             {
-                url : "/build/images/birdFlutterUpNormal.png"
+                url : "/dist/images/birdFlutterUpNormal.png"
             },
             {
-                url : "/build/images/birdNormal.png"
+                url : "/dist/images/birdNormal.png"
             },
             {
-                url : "/build/images/birdFlutterDownNormal.png"
+                url : "/dist/images/birdFlutterDownNormal.png"
             }
         ],
         backgroundImagesInterval : 300
@@ -20,13 +20,13 @@ export default {
         height : 34,
         backgroundImages : [
             {
-                url : "/build/images/birdFlutterUpFly.png"
+                url : "/dist/images/birdFlutterUpFly.png"
             },
             {
-                url : "/build/images/birdNormalFly.png"
+                url : "/dist/images/birdNormalFly.png"
             },
             {
-                url : "/build/images/birdFlutterDownFly.png"
+                url : "/dist/images/birdFlutterDownFly.png"
             }
         ],
         backgroundImagesInterval : 300
@@ -36,13 +36,13 @@ export default {
         height : 34,
         backgroundImages : [
             {
-                url : "/build/images/birdFlutterUpFall.png"
+                url : "/dist/images/birdFlutterUpFall.png"
             },
             {
-                url : "/build/images/birdNormalFall.png"
+                url : "/dist/images/birdNormalFall.png"
             },
             {
-                url : "/build/images/birdFlutterDownFall.png"
+                url : "/dist/images/birdFlutterDownFall.png"
             }
         ],
         backgroundImagesInterval : 300

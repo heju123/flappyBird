@@ -1,16 +1,21 @@
 var compile_mode = "dev";
 
-var cleanWebpackPlugin = require('clean-webpack-plugin');
-var uglifyJsPlugin = require('uglify-js-plugin');
+const cleanWebpackPlugin = require('clean-webpack-plugin');
+const uglifyJsPlugin = require('uglify-js-plugin');
+const copyWebpackPlugin = require('copy-webpack-plugin');
 
 var devtool = "source-map";
 var plugins = [];
-plugins.push(new cleanWebpackPlugin(['build/*.{js,map}'],
+plugins.push(new cleanWebpackPlugin(['dist/*.{js,map}'],
   {
     root: '',
     verbose: true,
     dry: false
   }));
+plugins.push(new copyWebpackPlugin([
+    { from: 'src/images', to: 'images' },
+    {from: 'src/maps', to: 'maps'}
+]));
 if (compile_mode == "prod") {
   plugins.push(new uglifyJsPlugin({
     compress: true, //default 'true', you can pass 'false' to disable this plugin
@@ -23,9 +28,9 @@ if (compile_mode == "prod") {
 module.exports = {
   entry: __dirname + '/src/js/main.js',
   output: {
-      path: __dirname + '/build',
-      publicPath : "/build/",
-      filename: "bundle.js",
+      path: __dirname + '/dist',
+      publicPath : "/dist/",
+      filename: "app.js",
       chunkFilename: '[name].chunk.js'
   },
   devtool: devtool,  //生成source file

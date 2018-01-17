@@ -17,7 +17,7 @@ export default {
                 x: 0,
                 y: 0
             },
-            mapDataUrl: "/build/maps/flappyBird.map",
+            mapDataUrl: "/dist/maps/flappyBird.map",
             terrainPolicy: {
                 "block": {
                     backgroundColor: "#000000"

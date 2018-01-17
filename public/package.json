@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "",
+  "dependencies": {
+    "plutojs": "*"
+  },
   "devDependencies": {
     "babel-core": "*",
     "babel-loader": "*",
@@ -10,7 +13,8 @@
     "clean-webpack-plugin": "*",
     "lite-server": "^2.3.0",
     "uglify-js-plugin": "*",
-    "webpack": "*"
+    "webpack": "*",
+    "copy-webpack-plugin": "*"
   },
   "scripts": {
     "build": "webpack",

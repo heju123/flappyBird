@@ -1,6 +1,7 @@
 /**
  * Created by heju on 2017/7/19.
  */
+import "plutojs";
 import mainView from "./view/mainView.js";
 
 class Main {
@@ -9,7 +10,7 @@ class Main {
         mainBox.style.width = "864px";
         mainBox.style.height = "512px";
 
-        var monk = new window.monk.Main("mainBox");
+        var monk = new window.plutojs.Main("mainBox");
 
         monk.run(mainView);
     }

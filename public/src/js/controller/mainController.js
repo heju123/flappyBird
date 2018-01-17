@@ -3,7 +3,7 @@
  */
 import bgView from "../view/bgView.js";
 
-export default class MainController extends window.monk.Controller{
+export default class MainController extends window.plutojs.Controller{
     constructor(component) {
         super(component);
 
@@ -13,7 +13,7 @@ export default class MainController extends window.monk.Controller{
             let bg = this.component.getComponentByName("bg");
             for (let i = 0; i < 3; i++)
             {
-                bgCom = new window.monk.components.Rect(bg);
+                bgCom = new window.plutojs.components.Rect(bg);
                 bgCom.initCfg(bgView).then(((bgCom)=>{
                     return ()=>{
                         bg.appendChildren(bgCom);

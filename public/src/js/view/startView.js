@@ -20,7 +20,7 @@ export default {
                 y : "30%",
                 autoWidth : true,
                 autoHeight : true,
-                backgroundImage : "/build/images/title.png"
+                backgroundImage : "/dist/images/title.png"
             }
         },
         {
@@ -35,7 +35,7 @@ export default {
                 },
                 autoWidth : true,
                 autoHeight : true,
-                backgroundImage : "/build/images/startButton.png",
+                backgroundImage : "/dist/images/startButton.png",
                 hover : {
                     alpha : 0.8
                 }
