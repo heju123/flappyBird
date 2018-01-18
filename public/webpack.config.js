@@ -6,7 +6,7 @@ const copyWebpackPlugin = require('copy-webpack-plugin');
 
 var devtool = "source-map";
 var plugins = [];
-plugins.push(new cleanWebpackPlugin(['dist/*.{js,map}'],
+plugins.push(new cleanWebpackPlugin(['dist/**'],
   {
     root: '',
     verbose: true,
