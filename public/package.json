@@ -4,21 +4,22 @@
   "description": "",
   "main": "",
   "dependencies": {
-    "plutojs": "*"
+    "plutojs": "^2.0.11"
   },
   "devDependencies": {
     "babel-core": "*",
-    "babel-loader": "*",
+    "babel-loader": "^7.1.4",
     "babel-preset-es2015": "*",
-    "clean-webpack-plugin": "*",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.1",
     "lite-server": "^2.3.0",
-    "uglify-js-plugin": "*",
     "webpack": "*",
-    "copy-webpack-plugin": "*"
+    "webpack-cli": "*",
+    "html-webpack-plugin": "*"
   },
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack --progress --watch"
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --progress --watch"
   },
   "author": "HEJU",
   "license": "ISC"
