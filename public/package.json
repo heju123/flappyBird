@@ -13,7 +13,7 @@
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.1",
     "lite-server": "^2.3.0",
-    "webpack": "*",
+    "webpack": "~4.5.0",
     "webpack-cli": "*",
     "html-webpack-plugin": "*"
   },
