@@ -7,15 +7,15 @@
     "plutojs": "^2.0.11"
   },
   "devDependencies": {
-    "babel-core": "*",
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-es2015": "*",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.1",
+    "html-webpack-plugin": "*",
     "lite-server": "^2.3.0",
     "webpack": "~4.5.0",
-    "webpack-cli": "*",
-    "html-webpack-plugin": "*"
+    "webpack-cli": "^3.0.3"
   },
   "scripts": {
     "build": "webpack --mode production",
