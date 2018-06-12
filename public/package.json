@@ -4,7 +4,7 @@
   "description": "",
   "main": "",
   "dependencies": {
-    "plutojs": "^2.0.12"
+    "plutojs": "^2.0.14"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

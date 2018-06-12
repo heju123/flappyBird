@@ -16,7 +16,7 @@ export default class MainController extends window.plutojs.Controller{
                 bgCom = new window.plutojs.components.Rect(bg);
                 bgCom.initCfg(bgView).then(((bgCom)=>{
                     return ()=>{
-                        bg.appendChildren(bgCom);
+                        bg.appendChild(bgCom);
                     };
                 })(bgCom));
             }

@@ -77,8 +77,9 @@ export default class GameController extends window.plutojs.Controller{
         }
         else
         {
-            if (currentTime - this.lastTime >= 1)//大约1毫秒执行一次
+            if (currentTime - this.lastTime >= 50)//大约50毫秒执行一次
             {
+                this.mapView.setX(this.mapView.getX() - 1);
                 this.lastTime = currentTime;
             }
         }
