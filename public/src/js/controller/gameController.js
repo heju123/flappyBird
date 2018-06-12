@@ -69,6 +69,21 @@ export default class GameController extends window.plutojs.Controller{
         {
             return;
         }
+
+        let currentTime = (new Date()).getTime();
+        if (!this.lastTime)
+        {
+            this.lastTime = currentTime;
+        }
+        else
+        {
+            if (currentTime - this.lastTime >= 1)//大约1毫秒执行一次
+            {
+                this.lastTime = currentTime;
+            }
+        }
+
+        //绘制钢管
         for (let row = 0; row < this.mapView.mapHeight; row++)
         {
             for (let col = 0; col < this.mapView.mapWidth; col++)
