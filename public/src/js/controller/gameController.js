@@ -47,6 +47,8 @@ export default class GameController extends window.plutojs.Controller{
                     default : break;
                 }
             });
+
+            this.bird.xSpeed = 1;
         });
     }
 
@@ -68,20 +70,6 @@ export default class GameController extends window.plutojs.Controller{
         if (!this.mapView || !this.mapView.mapData || !this.tubeImageDom)
         {
             return;
-        }
-
-        let currentTime = (new Date()).getTime();
-        if (!this.lastTime)
-        {
-            this.lastTime = currentTime;
-        }
-        else
-        {
-            if (currentTime - this.lastTime >= 50)//大约50毫秒执行一次
-            {
-                this.mapView.setX(this.mapView.getX() - 1);
-                this.lastTime = currentTime;
-            }
         }
 
         //绘制钢管
